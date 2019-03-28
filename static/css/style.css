@@ -44,7 +44,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
 }
 
 .question {
@@ -56,6 +55,7 @@ body {
     padding-top: 40px;
     margin-top: -35px;
     font-family: Daredevil;
+    font-size: 1.1em;
 }
 .inputBox{
     width: 80%;
@@ -74,6 +74,7 @@ body {
 .buttonShit {
     width: 150px;
     height: 50px;
+    margin-top: 10px;
     border-radius: 10px;
     font-weight: bold;
     background-color: rgb(26, 26, 26);
@@ -91,5 +92,5 @@ body {
 }
 
 .tatti {
-    margin-top:-20px;
+    padding-bottom: 30px;
 }
