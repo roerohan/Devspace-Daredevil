@@ -13,9 +13,9 @@ mongoose.model('Question', quesSchema);
 
 var stateSchema = new mongoose.Schema({
     currentQuestion:{
-        type: String,
+        type: Number,
     },
-    currentLeader:{
+    currentDaredevil:{
         type: String,
     }
 })

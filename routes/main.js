@@ -7,9 +7,8 @@ var currentQuestion;
 var currentDaredevil;
 router.get("/", (req, res) => {
     State.findOne({
-        "_id": 1
     }, (err, doc) => {
-        if (!err) {
+        if (err) {
             res.send(err);
         } else {
             if (!doc) {
@@ -17,15 +16,16 @@ router.get("/", (req, res) => {
             } else {
                 currentQuestion = doc.currentQuestion;
                 currentDaredevil = doc.currentDaredevil;
-
+                console.log(currentDaredevil);
+                console.log(currentQuestion);
                 Question.findOne({
                     "qno": currentQuestion
                 }, (err, doc2) => {
                     if (err) {
                         res.send(err);
                     } else {
-                        if (!doc) {
-                            res.send("Question not found")
+                        if (!doc2) {
+                            res.send("Dare not found")
                         } else {
                             res.render("index.hbs", {
                                     question: doc2.question,
@@ -43,12 +43,24 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
     currentDaredevil = req.body.name;
     State.updateOne({
-        "currentQuestion": currentQuestion
     }, {
-        "currentQuestion": currentDaredevil + 1,
+        "currentQuestion": currentQuestion + 1,
         "currentDaredevil": currentDaredevil,
     }, (err, doc) => {
         res.redirect("/");
     });
 });
+
+router.get("/insert", (req,res)=>{
+    var state = new State();
+    state.currentDaredevil = "me";
+    state.currentQuestion = 1;
+    state.save()
+    var question = new Question();
+    question.qno = 1;
+    question.question = "Question 1";
+    question.save();
+    res.send("Success");
+})
+
 module.exports = router;
