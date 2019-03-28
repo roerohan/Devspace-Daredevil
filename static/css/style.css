@@ -62,9 +62,10 @@ body {
     height: 60px;
     background-color: rgb(26, 26, 26);
     border-radius: 10px;
-    color: white;
+    color: #BB0000;
     border-color: black;
     padding-left: 20px;
+    font-size: 1em;
 }
 
 .khalidiv{

@@ -5,45 +5,76 @@ const Question = mongoose.model('Question');
 const State = mongoose.model('State');
 var currentQuestion;
 var currentDaredevil;
+
+
+const adminUser = "davidbart";
+const adminPass = "openglsux";
+
+
+router.get("/adminLogin", function (req, res) {
+    res.render("authenticate");
+});
+
+router.post("/adminLogin", function (req, res) {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    if (username == adminUser && password === adminPass) {
+        req.session.user = true;
+        res.redirect("/");
+    } else {
+        res.render("authenticate", {
+            wrong: true
+        });
+    }
+});
+
+router.get("/logout", function (req, res, next) {
+    req.session.destroy(function () {
+        res.redirect("/adminLogin");
+    });
+});
+
 router.get("/", (req, res) => {
-    State.findOne({
-    }, (err, doc) => {
-        if (err) {
-            res.send(err);
-        } else {
-            if (!doc) {
-                res.send("Not found");
+    if (!req.session.user) {
+        res.redirect("/adminLogin")
+    } else {
+        State.findOne({}, (err, doc) => {
+            if (err) {
+                res.send(err);
             } else {
-                currentQuestion = doc.currentQuestion;
-                currentDaredevil = doc.currentDaredevil;
-                console.log(currentDaredevil);
-                console.log(currentQuestion);
-                Question.findOne({
-                    "qno": currentQuestion
-                }, (err, doc2) => {
-                    if (err) {
-                        res.send(err);
-                    } else {
-                        if (!doc2) {
-                            res.send("Dare not found")
+                if (!doc) {
+                    res.send("Not found");
+                } else {
+                    currentQuestion = doc.currentQuestion;
+                    currentDaredevil = doc.currentDaredevil;
+                    console.log(currentDaredevil);
+                    console.log(currentQuestion);
+                    Question.findOne({
+                        "qno": currentQuestion
+                    }, (err, doc2) => {
+                        if (err) {
+                            res.send(err);
                         } else {
-                            res.render("index.hbs", {
+                            if (!doc2) {
+                                res.send("Dare not found")
+                            } else {
+                                res.render("index.hbs", {
                                     question: doc2.question,
                                     daredevil: currentDaredevil,
-                                }
-                            );
+                                });
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
-        }
-    });
+        });
+    }
 });
 
 router.post("/", (req, res) => {
     currentDaredevil = req.body.name;
-    State.updateOne({
-    }, {
+    State.updateOne({}, {
         "currentQuestion": currentQuestion + 1,
         "currentDaredevil": currentDaredevil,
     }, (err, doc) => {
@@ -52,29 +83,36 @@ router.post("/", (req, res) => {
     });
 });
 
-router.get("/insert", (req,res)=>{
+router.get("/insert", (req, res) => {
     res.render("newQuestion.hbs")
 })
 
-router.post("/insert", async (req, res)=> {
+router.post("/insert", async (req, res) => {
     const qno = req.body.qno;
     const question = req.body.question;
-    const q = await Question.findOne({qno});
+    const q = await Question.findOne({
+        qno
+    });
 
     if (q) {
         q.question = question;
         q.save();
     } else {
-           var questions = new Question()
-           questions.question = question
-           questions.qno = qno
-           questions.save()
+        var questions = new Question()
+        questions.question = question
+        questions.qno = qno
+        questions.save()
     }
 
-    var state = new State()
-    state.currentDaredevil = "David Bart"
-    state.currentQuestion = 1
-    state.save()
-    res.send("Success");
+    const s = await State.findOne({});
+    if (s) {
+
+    } else {
+        var state = new State()
+        state.currentDaredevil = "David Bart"
+        state.currentQuestion = 1
+        state.save()
+        res.send("Success");
+    }
 });
 module.exports = router;

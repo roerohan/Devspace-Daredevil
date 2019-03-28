@@ -4,8 +4,17 @@ const exphbs = require('express-handlebars');
 const bodyparser = require('body-parser');
 const main = require('./routes/main');
 const path = require('path');
+const session = require('express-session');
+
+
 
 var app = express();
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {maxAge: 12 * 60 * 60 * 100}
+  }));
 app.use(bodyparser.urlencoded({
     extended:true
 }));
