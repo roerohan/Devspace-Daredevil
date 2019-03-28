@@ -49,6 +49,6 @@ router.post("/", (req, res) => {
         "currentDaredevil": currentDaredevil,
     }, (err, doc) => {
         res.redirect("/");
-    })
-})
+    });
+});
 module.exports = router;
