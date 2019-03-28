@@ -47,6 +47,7 @@ router.post("/", (req, res) => {
         "currentQuestion": currentQuestion + 1,
         "currentDaredevil": currentDaredevil,
     }, (err, doc) => {
+        console.log(currentQuestion)
         res.redirect("/");
     });
 });
@@ -55,18 +56,25 @@ router.get("/insert", (req,res)=>{
     res.render("newQuestion.hbs")
 })
 
-router.post("/addQuestion", async (req, res)=> {
+router.post("/insert", async (req, res)=> {
     const qno = req.body.qno;
     const question = req.body.question;
-
     const q = await Question.findOne({qno});
 
     if (q) {
         q.question = question;
-        await q.save();
+        q.save();
     } else {
-           
+           var questions = new Question()
+           questions.question = question
+           questions.qno = qno
+           questions.save()
     }
-    
+
+    var state = new State()
+    state.currentDaredevil = "David Bart"
+    state.currentQuestion = 1
+    state.save()
+    res.send("Success");
 });
 module.exports = router;
