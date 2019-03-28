@@ -52,15 +52,21 @@ router.post("/", (req, res) => {
 });
 
 router.get("/insert", (req,res)=>{
-    var state = new State();
-    state.currentDaredevil = "me";
-    state.currentQuestion = 1;
-    state.save()
-    var question = new Question();
-    question.qno = 1;
-    question.question = "Question 1";
-    question.save();
-    res.send("Success");
+    res.render("newQuestion.hbs")
 })
 
+router.post("/addQuestion", async (req, res)=> {
+    const qno = req.body.qno;
+    const question = req.body.question;
+
+    const q = await Question.findOne({qno});
+
+    if (q) {
+        q.question = question;
+        await q.save();
+    } else {
+           
+    }
+    
+});
 module.exports = router;

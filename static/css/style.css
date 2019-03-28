@@ -24,43 +24,45 @@ body {
 .header {
     width: 100vw;
     height: 50vh;
-    top: 0;
+    top: 0; 
 }
 
 .box {
     z-index: 1;
     background-color: black;
-    width: 1000px;
-    height: 510px;
+    max-width: 60vw;
+    height: 55vh;
     margin: 0 auto;
     border: 5px solid #BB0000;
-    margin-top: -100px;
+    margin-top: -10vh;
     position: relative;
     color: white;
     text-align: center;
-    font-size: 50px;
+    font-size: 1.2em;
+    padding: 0em 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
 }
 
 .question {
     padding-top: 30px;
-    height: 200px;
+    font-family: productsans;
 }
 
 .daredevil {
     padding-top: 40px;
     margin-top: -35px;
     font-family: Daredevil;
-    font-size: 30px;
 }
 .inputBox{
-    width: 700px;
+    width: 80%;
     height: 60px;
     background-color: rgb(26, 26, 26);
     border-radius: 10px;
     color: white;
     border-color: black;
-    font-size: 30px;
     padding-left: 20px;
 }
 
@@ -72,7 +74,6 @@ body {
     width: 150px;
     height: 50px;
     border-radius: 10px;
-    font-size: 22px;
     font-weight: bold;
     font-family: 'Lato', sans-serif !important ;
     background-color: rgb(26, 26, 26);
@@ -90,6 +91,5 @@ body {
 }
 
 .tatti {
-    font-size: 20px;
     margin-top:-20px;
 }
