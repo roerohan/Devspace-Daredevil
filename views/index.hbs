@@ -6,12 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Daredevil</title>
     <link rel="shortcut icon" type="image/png" href="/static/images/favicon.png"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css
-    "/>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
 
 </head>
 <body>
     {{!-- <img src = "/static/images/CSIlogo.png" class="csivitLogo"> --}}
     <img src="/static/images/Header.png" class="header">
+
+    <div class="box">
+        <div class="question">{{question}}<br></div>
+        <form>
+        <input type="text" name="name" class="inputBox"><br>
+        <div class="khalidiv"></div>
+        <button type="submit" class="buttonShit">Congrats</button>
+        </form>
+        <br>
+        <div class="tatti">
+        CURRENT DAREDEVIL IS
+        <div class="daredevil">{{daredevil}}</div>
+        </div>
+    </div>
 </body>
 </html>
