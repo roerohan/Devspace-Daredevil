@@ -73,46 +73,58 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    currentDaredevil = req.body.name;
-    State.updateOne({}, {
-        "currentQuestion": currentQuestion + 1,
-        "currentDaredevil": currentDaredevil,
-    }, (err, doc) => {
-        console.log(currentQuestion)
-        res.redirect("/");
-    });
+    if (!req.session.user) {
+        res.redirect("/adminLogin")
+    } else {
+        currentDaredevil = req.body.name;
+        State.updateOne({}, {
+            "currentQuestion": currentQuestion + 1,
+            "currentDaredevil": currentDaredevil,
+        }, (err, doc) => {
+            console.log(currentQuestion)
+            res.redirect("/");
+        });
+    }
 });
 
 router.get("/insert", (req, res) => {
-    res.render("newQuestion.hbs")
+    if (!req.session.user) {
+        res.redirect("/adminLogin")
+    } else {
+        res.render("newQuestion.hbs")
+    }
 })
 
 router.post("/insert", async (req, res) => {
-    const qno = req.body.qno;
-    const question = req.body.question;
-    const q = await Question.findOne({
-        qno
-    });
-
-    if (q) {
-        q.question = question;
-        q.save();
+    if (!req.session.user) {
+        res.redirect("/adminLogin")
     } else {
-        var questions = new Question()
-        questions.question = question
-        questions.qno = qno
-        questions.save()
-    }
+        const qno = req.body.qno;
+        const question = req.body.question;
+        const q = await Question.findOne({
+            qno
+        });
 
-    const s = await State.findOne({});
-    if (s) {
+        if (q) {
+            q.question = question;
+            q.save();
+        } else {
+            var questions = new Question()
+            questions.question = question
+            questions.qno = qno
+            questions.save()
+        }
 
-    } else {
-        var state = new State()
-        state.currentDaredevil = "David Bart"
-        state.currentQuestion = 1
-        state.save()
-        res.send("Success");
+        const s = await State.findOne({});
+        if (s) {
+
+        } else {
+            var state = new State()
+            state.currentDaredevil = "David Bart"
+            state.currentQuestion = 1
+            state.save()
+            res.send("Success");
+        }
     }
 });
 module.exports = router;
