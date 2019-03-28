@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Daredevil</title>
-    <link rel="shortcut icon" type="image/png" href="/static/images/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="/static/images/favicon.png" />
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
 
 </head>
+
 <body>
+
     {{!-- <img src = "/static/images/CSIlogo.png" class="csivitLogo"> --}}
     <img src="/static/images/Header.png" class="header">
 
     <div class="box">
         <div class="question">{{question}}<br></div>
         <form class="inputForm" action="/" method="POST">
-        <input type="text" name="name" class="inputBox" placeholder="WHO'S THE NEW DAREDEVIL?"><br>
-        <button type="submit" class="buttonShit">New Daredevil</button>
+            <input type="text" name="name" class="inputBox" placeholder="WHO'S THE NEW DAREDEVIL?"><br>
+            <button type="submit" class="buttonShit">New Daredevil</button>
         </form>
         <div class="tatti">
-        CURRENT DAREDEVIL IS
-        <div class="daredevil">{{daredevil}}</div>
+            CURRENT DAREDEVIL IS
+            <div class="daredevil">{{daredevil}}</div>
+        </div>
+    </div>
+    <div class="container demo">
+        <div class="content">
+            <div id="large-header" class="large-header">
+                <canvas id="demo-canvas"></canvas>
+            </div>
         </div>
     </div>
 </body>
+
+
+<script
+    src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/TweenLite.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/EasePack.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo.js"></script>
+
 </html>
