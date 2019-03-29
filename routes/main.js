@@ -72,6 +72,9 @@ router.get("/", (req, res) => {
     }
 });
 
+router.get("/apparentlyverycomplicatedroute", (req, res)=> {
+    res.render("adminAdd");
+});
 router.post("/", (req, res) => {
     if (!req.session.user) {
         res.redirect("/adminLogin")

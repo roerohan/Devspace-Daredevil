@@ -54,7 +54,7 @@ body {
     padding-top: 30px;
     margin: 0 auto;
     width: 57.8vh;
-    font-size: 1.2em;
+    font-size: 2em;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     font-family: productsans;
@@ -63,14 +63,15 @@ body {
 
 .question:hover {
     margin: 0 auto;
-    width: 57.8vh;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     padding-top: 10px;
-    transform: scale(2.2);
+    transform: scale(1.7);
     color: white;
     background-color: #BB0000;
     padding-bottom: 10px;
+    padding: 0 11.6vh;
+
 }
 
 .daredevil {
@@ -122,17 +123,15 @@ body {
 .tatti {
     padding-bottom: 30px;
     transition: 0.3s;
+    font-size: 2em;
 }
 
 .tatti:hover {
     padding-top: 10px;
-    transform: scale(2.2);
+    transform: scale(1.7);
     color: white;
     background-color: #BB0000;
 }
-
-
-
 
 .demo{
     margin-top:-50vh;
