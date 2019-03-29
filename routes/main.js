@@ -123,8 +123,8 @@ router.post("/insert", async (req, res) => {
             state.currentDaredevil = "David Bart"
             state.currentQuestion = 1
             state.save()
-            res.send("Success");
         }
+        res.send("Success");
     }
 });
 module.exports = router;
