@@ -14,9 +14,16 @@
 
 <body>
 
-    {{!-- <img src = "/static/images/CSIlogo.png" class="csivitLogo"> --}}
+    <img src = "/static/images/CSIlogo.png" class="csivitLogo">
     <img src="/static/images/Header.png" class="header">
 
+    <div class="container demo">
+        <div class="content">
+            <div id="large-header" class="large-header">
+                <canvas id="demo-canvas"></canvas>
+            </div>
+        </div>
+    </div>
     <div class="box">
         <div class="question">{{question}}<br></div>
         <form class="inputForm" action="/" method="POST">
@@ -26,13 +33,6 @@
         <div class="tatti">
             CURRENT DAREDEVIL IS
             <div class="daredevil">{{daredevil}}</div>
-        </div>
-    </div>
-    <div class="container demo">
-        <div class="content">
-            <div id="large-header" class="large-header">
-                <canvas id="demo-canvas"></canvas>
-            </div>
         </div>
     </div>
 </body>

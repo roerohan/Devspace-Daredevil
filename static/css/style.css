@@ -20,7 +20,10 @@ body {
 }
 
 .csivitLogo {
+    margin-top:0;
     width: 300px;
+    position: absolute;
+    z-index: 10;
 }
 
 .header {
@@ -30,14 +33,13 @@ body {
 }
 
 .box {
-    z-index: 2;
+    z-index: 1;
     border-radius: 10px;
-    background-color: black;
     max-width: 60vw;
     height: 55vh;
     margin: 0 auto;
     border: 8px solid #BB0000;
-    margin-top: -10vh;
+    margin-top: -60vh;
     position: relative;
     color: rgba(255, 255, 255, 0.719);
     text-align: center;
@@ -130,39 +132,8 @@ body {
 
 
 
-.large-header {
-    position: relative;
-    width: 100%;
-    background: #111;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center center;
-    z-index: 1;
- }
 
- .demo .large-header {
+.demo{
+    margin-top:-50vh;
     background-color: black;
-    margin-top: -50vh;
- }
-
- .main-title {
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    color: #F9F1E9;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate3d(100%, 100%, 0);
-    transform: translate3d(100%, 100%, 0);
- }
-
- .demo .main-title {
-    text-transform: uppercase;
-    font-size: 4.2em;
-    letter-spacing: 0.1em;
- }
-
- .main-title .thin {
-    font-weight: 200;
- }
+}
