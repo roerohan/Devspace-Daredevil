@@ -36,40 +36,36 @@ router.get("/logout", function (req, res, next) {
 });
 
 router.get("/", (req, res) => {
-    if (!req.session.user) {
-        res.redirect("/adminLogin")
-    } else {
-        State.findOne({}, (err, doc) => {
-            if (err) {
-                res.send(err);
+    State.findOne({}, (err, doc) => {
+        if (err) {
+            res.send(err);
+        } else {
+            if (!doc) {
+                res.send("Not found");
             } else {
-                if (!doc) {
-                    res.send("Not found");
-                } else {
-                    currentQuestion = doc.currentQuestion;
-                    currentDaredevil = doc.currentDaredevil;
-                    console.log(currentDaredevil);
-                    console.log(currentQuestion);
-                    Question.findOne({
-                        "qno": currentQuestion
-                    }, (err, doc2) => {
-                        if (err) {
-                            res.send(err);
+                currentQuestion = doc.currentQuestion;
+                currentDaredevil = doc.currentDaredevil;
+                console.log(currentDaredevil);
+                console.log(currentQuestion);
+                Question.findOne({
+                    "qno": currentQuestion
+                }, (err, doc2) => {
+                    if (err) {
+                        res.send(err);
+                    } else {
+                        if (!doc2) {
+                            res.send("Dare not found")
                         } else {
-                            if (!doc2) {
-                                res.send("Dare not found")
-                            } else {
-                                res.render("index.hbs", {
-                                    question: doc2.question,
-                                    daredevil: currentDaredevil,
-                                });
-                            }
+                            res.render("index.hbs", {
+                                question: doc2.question,
+                                daredevil: currentDaredevil,
+                            });
                         }
-                    });
-                }
+                    }
+                });
             }
-        });
-    }
+        }
+    });
 });
 
 router.get("/apparentlyverycomplicatedroute", (req, res)=> {
